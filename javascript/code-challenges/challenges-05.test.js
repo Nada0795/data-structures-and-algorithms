@@ -13,11 +13,11 @@ You can assume that neither firstName nor lastName will be blank
 ------------------------------------------------------------------------------------------------ */
 const toLastNames = people => {
   // Solution code here...
-  let myArr=[];
-  people.map((element)=>{
-    myArr.push(element.firstName+""+element.lastName);
+  let newArr=[];
+  people.map((item,i) => {
+    newArr[i]=`${item.firstName} ${item.lastName}`;
   });
-  return myArr;
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -134,9 +134,10 @@ let starWarsData = [{
 
 const returnNames = (arr) => {
   // Solution code here...
-let myData =arr.reduce(function(a,b,index){
-  a[index]=(b.name);
-  return a; },{})
+let myData =arr.reduce((accumulator,item,i)=>{
+  accumulator[i] = item.name;
+  return accumulator;
+},[]);
 return myData;
 };
 
