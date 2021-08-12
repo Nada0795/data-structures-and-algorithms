@@ -12,10 +12,14 @@ Write a function named screenForNames that takes in an array of strings and uses
 
 const screenForNames = (arr) => {
   // Solution code here...
-  let regX = /^((Mr.|Mrs.| Ms.| Dr.)) [a-zA-z]/g;
-  let arrSC =arr.filter(element=>regX.test(element));
-return arrSC;
-}
+  let myArr =arr.filter(value => {
+    if ( /^((Mr||Mrs||Ms||Dr).\s)[A-Z]/.test(value)){
+      return value
+    }
+
+  })
+return myArr;
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -27,6 +31,7 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 
 const toTitleCase = (arr) => {
   // Solution code here...
+  return arr.map((value)=> value.charAt(0).toUpperCase()+value.slice(1));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -102,7 +107,17 @@ let starWarsData = [{
 
 let biggerThanLuke = (arr) => {
   // Solution code here...
-  
+
+  let myArr=arr.reduce((a,b)=>{
+if (Number(b.mass)>Number(arr[0].mass)){
+  if (a){
+    a=a+' - ';
+  }
+  a=a+b.name;
+}
+return a;
+  }, '');
+  return myArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -163,7 +178,38 @@ Here is a sample board:
 
 const detectTicTacToeWin = (board) => {
   // Solution code here...
-};
+  function checking(r1,r2,r3){
+    if (r1[0] === r1[1] && r1[1] === r1[2] && r1[2] !==''){
+    return true ; 
+    }
+    if (r2[0] === r2[1] && r2[1] === r2[2] && r2[2] !==''){
+      return true ; 
+      }
+      if (r3[0] === r3[1] && r3[1] === r3[2] && r3[2] !==''){
+        return true ; 
+        }
+
+        if (r1[0] === r2[0] && r2[0] === r3[0] && r3[0] !==''){
+          return true ; 
+          }
+          if (r1[1] === r2[1] && r2[1] === r3[1] && r3[1] !==''){
+            return true ; 
+          }
+            
+            if (r1[2] === r2[2] && r2[2] === r3[2] && r3[2] !==''){
+              return true ; 
+            }   
+
+              if (r1[0] === r2[1] && r2[1] === r3[2] && r3[2] !==''){
+                return true ; 
+              }   
+                if (r1[2] === r2[1] && r2[1] === r3[0] && r3[0] !==''){
+                  return true ; 
+                }
+                return false ; 
+              }
+              return checking(board[0],board[1],board[2]);
+            };
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
